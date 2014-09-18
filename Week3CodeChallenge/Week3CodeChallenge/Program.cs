@@ -10,8 +10,8 @@ namespace Week3CodeChallenge
     {
         static void Main(string[] args)
         {
-            FindPrimes(10001);
-            EvenFibonacciSequencer(89);
+            //FindPrimes(10001);
+            //EvenFibonacciSequencer(89);
             LongestCollatzSequence();
             Console.ReadKey();
         }
@@ -63,35 +63,43 @@ namespace Week3CodeChallenge
         }
         static void LongestCollatzSequence()
         {
+
+            //i tried okay
+
             long input = int.Parse(Console.ReadLine());
 
-            for (long p = 0; p < input; p++)
+            int seqCounter = 0;
+            int maxCount = 0;
+            long maxNumber = 0;
+
+            for (long p = 1; p < input; p++)
             {
-                long i = 0;
+                long i = p;
+
                 while ( i != 1)
                 {
-                    long seqCounter = 0;
-                    string trueSeq = string.Empty;
 
                     if (i % 2 == 0)
                     {
                         i = i / 2;
-                        seqCounter++;
                     }
-                    else if (i % 2 != 0)
+                    else
                     {
                         i = i * 3 + 1;
-                        seqCounter++;
                     }
-                    else if (i == 1)
-                    {
-                        seqCounter++;
-                        trueSeq = i.ToString();
-                        Console.WriteLine("The longest sequence was " + seqCounter + " numbers long for the number " + trueSeq + " for numbers all the way up to " + input + ".");
-                        break;
-                    }
+                    seqCounter++;
+                    
                 }
+                if (maxCount < seqCounter)
+                {
+                    maxCount = seqCounter;
+                    maxNumber = i;
+                }
+                
             }
+            //this tries to work but it doesn't like this.
+            Console.WriteLine("The longest chain was " + maxNumber + " with a sequence of " + maxCount + ".");
+            
         }
     }
 }
